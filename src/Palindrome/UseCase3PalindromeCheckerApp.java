@@ -1,15 +1,20 @@
 package Palindrome;
-public class UseCase3PalindromeCheckerApp {
+
+import java.util.Stack;
+
+public class UseCase5PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         System.out.println(" Welcome to the Palindrome Checker Management System");
         System.out.println(" Version : 1");
         System.out.println(" System initialized successfully");
-                         System.out.println("----------------------------------------");
+        System.out.println("----------------------------------------");
 
-             checkPalindrome("radar");
+        checkPalindrome("radar");
         checkPalindrome("madam");
+        checkPalindrome("noon");
+        checkPalindrome("hello");
 
         System.out.println("----------------------------------------");
         System.out.println("Program exited successfully.");
@@ -17,24 +22,28 @@ public class UseCase3PalindromeCheckerApp {
 
     public static void checkPalindrome(String input) {
 
-                 char[] chars = input.toCharArray();
+        // Create a stack to store characters
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = chars.length - 1;
+        // Push each character of the input string into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
+        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
-                           isPalindrome = false;
+        // Iterate again through the input string
+        for (char c : input.toCharArray()) {
+            // Pop character from stack and compare
+            if (c != stack.pop()) {
+                isPalindrome = false;
                 break;
             }
-                 start++;
-            end--;
         }
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
-                  System.out.println();
+        System.out.println();
     }
 }
