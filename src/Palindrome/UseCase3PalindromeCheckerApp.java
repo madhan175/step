@@ -2,7 +2,7 @@ package Palindrome;
 
 import java.util.Stack;
 
-public class UseCase5PalindromeCheckerApp {
+public class UseCase3PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
