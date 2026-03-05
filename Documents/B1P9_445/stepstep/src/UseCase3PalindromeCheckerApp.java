@@ -1,6 +1,8 @@
-public class UseCase3PalindromeCheckerApp {
+public class UseCase11PalindromeCheckerApp {
 
-        // Node class for Linked List (Used in UC9)
+        // ===============================
+        // Node class for UC9 (Linked List)
+        // ===============================
         static class Node {
             char data;
             Node next;
@@ -13,11 +15,45 @@ public class UseCase3PalindromeCheckerApp {
 
         static Node left;
 
+        // ===============================
+        // UC11 - Palindrome Service Class
+        // ===============================
+        static class PalindromeChecker {
+
+            public boolean checkPalindrome(String input) {
+
+                if (input == null) {
+                    return false;
+                }
+
+                String normalized = input.toLowerCase();
+
+                int start = 0;
+                int end = normalized.length() - 1;
+
+                while (start < end) {
+
+                    if (normalized.charAt(start) != normalized.charAt(end)) {
+                        return false;
+                    }
+
+                    start++;
+                    end--;
+                }
+
+                return true;
+            }
+        }
+
+        // ===============================
+        // MAIN METHOD
+        // ===============================
         public static void main(String[] args) {
 
             System.out.println(" Welcome to the Palindrome Checker Management System");
             System.out.println(" UC9 - Recursion Based Palindrome Check");
             System.out.println(" UC10 - Case-Insensitive & Space-Ignored Palindrome Check");
+            System.out.println(" UC11 - Object-Oriented Palindrome Service");
             System.out.println(" System initialized successfully");
             System.out.println("--------------------------------------------------");
 
@@ -34,12 +70,20 @@ public class UseCase3PalindromeCheckerApp {
             checkPalindromeIgnoreCase("Hello World");
 
             System.out.println("--------------------------------------------------");
+
+            // UC11
+            PalindromeChecker checker = new PalindromeChecker();
+            testPalindrome(checker, "madam");
+            testPalindrome(checker, "racecar");
+            testPalindrome(checker, "java");
+
+            System.out.println("--------------------------------------------------");
             System.out.println("Program exited successfully.");
         }
 
-        // ==============================
-        // UC9 - Recursion Based Palindrome
-        // ==============================
+        // ===============================
+        // UC9 - Recursion Palindrome
+        // ===============================
 
         public static void checkPalindromeUsingRecursion(String input) {
 
@@ -95,13 +139,13 @@ public class UseCase3PalindromeCheckerApp {
             return head;
         }
 
-        // ==============================
+        // ===============================
         // UC10 - Ignore Case & Spaces
-        // ==============================
+        // ===============================
 
         public static void checkPalindromeIgnoreCase(String input) {
 
-            String normalized = normalizeString(input);
+            String normalized = input.replaceAll("\\s+", "").toLowerCase();
 
             boolean result = isSimplePalindrome(normalized);
 
@@ -109,11 +153,6 @@ public class UseCase3PalindromeCheckerApp {
             System.out.println("Normalized : " + normalized);
             System.out.println("Is Palindrome? : " + result);
             System.out.println();
-        }
-
-        public static String normalizeString(String input) {
-
-            return input.replaceAll("\\s+", "").toLowerCase();
         }
 
         public static boolean isSimplePalindrome(String str) {
@@ -132,5 +171,18 @@ public class UseCase3PalindromeCheckerApp {
             }
 
             return true;
+        }
+
+        // ===============================
+        // UC11 - OOP Palindrome Service
+        // ===============================
+
+        public static void testPalindrome(PalindromeChecker checker, String input) {
+
+            boolean result = checker.checkPalindrome(input);
+
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome? : " + result);
+            System.out.println();
         }
     }}
